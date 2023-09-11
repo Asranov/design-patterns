@@ -27,3 +27,29 @@ class Dog {
     console.log("Eat method of dog");
   }
 }
+
+class AccessModifiers {
+  publicpublicAttribute;
+  _privateAttribute;
+  #protectedAttribute;
+
+  constructor() {
+    this.publicpublicAttribute = "Public  +";
+    this._privateAttribute = "Private  -";
+    this.#protectedAttribute = "Protected  #";
+  }
+
+  publicMethod() {
+    console.log("This is a public method");
+  }
+
+  _privateMethod() {
+    console.log("This is a private method");
+  }
+
+  #protectedMethod() {
+    console.log("This is a protected method");
+  }
+}
+
+const accessModifiers = new AccessModifiers();
