@@ -73,4 +73,26 @@ class TaskList {
 const tasks = new TaskList();
 tasks.addTask("Third Task");
 tasks.removeTask("First Task");
-console.log(tasks.getAllTasks());
+
+//Пример 1: Диаграмма классов для представления банковской системы.
+class Bank {
+  constructor(name) {
+    this._name = name;
+    this._accounts = ["Account 1", "Account 2"];
+  }
+
+  createAccount(account) {
+    this._accounts.push(account);
+  }
+
+  closeAccount(account) {
+    this._accounts.splice(this._accounts.indexOf(account));
+  }
+
+  getBalance(accountParam) {
+    return this._accounts.filter((account) => account == accountParam);
+  }
+}
+
+const anorBank = new Bank("Anor Bank");
+anorBank.createAccount("Account 3");
