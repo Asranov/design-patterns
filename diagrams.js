@@ -7,11 +7,23 @@ class Dog {
     this.age = age;
   }
 
-  sit() {}
+  getAge() {
+    return this.age;
+  }
 
-  bark() {}
+  sit() {
+    console.log("Sit method of dog");
+  }
 
-  run() {}
+  bark() {
+    console.log("Bark method of dog");
+  }
 
-  eath() {}
+  run() {
+    console.log("Run method of dog");
+  }
+
+  eat() {
+    console.log("Eat method of dog");
+  }
 }
