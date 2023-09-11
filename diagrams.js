@@ -53,3 +53,24 @@ class AccessModifiers {
 }
 
 const accessModifiers = new AccessModifiers();
+
+class TaskList {
+  _tasks = ["First Task", "Second Task"];
+
+  addTask(task) {
+    this._tasks.push(task);
+  }
+
+  removeTask(task) {
+    this._tasks.splice(this._tasks.indexOf(task), 1);
+  }
+
+  getAllTasks() {
+    return this._tasks;
+  }
+}
+
+const tasks = new TaskList();
+tasks.addTask("Third Task");
+tasks.removeTask("First Task");
+console.log(tasks.getAllTasks());
