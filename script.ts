@@ -15,27 +15,41 @@
 //  -MEDIATOR
 //  -STATE
 
-//Creational Pattern
-//  1.Singleton
-class Singleton {
-  private static instance: Singleton;
+// ---------------------------------------------------------------- //
 
-  private constructor() { }
+//Factory Pattern
+function Developer(name) {
+  this.name = name;
+  this.type = "Developer";
+}
 
-  public static getInstance(): Singleton {
-    if (!Singleton.instance) {
-      Singleton.instance = new Singleton();
+function Tester(name) {
+  this.name = name;
+  this.type = "Tester";
+}
+
+function EmployeeFactory() {
+  this.create = (name, type) => {
+    switch (type) {
+      case 1:
+        return new Developer(name)
+        break;
+      case 2:
+        return new Tester(name)
+        break;
     }
-    return Singleton.instance;
-  }
-
-  public showMessage(): void {
-    console.log("Hello from Singleton!");
   }
 }
 
-const singleton1 = Singleton.getInstance();
-const singleton2 = Singleton.getInstance();
+function say() {
+  console.log("Hi, i am " + this.name + " and i am a " + this.type);
+}
 
-singleton1.showMessage();
-console.log(singleton1 === singleton2); 
+const employeeFactory: any = new EmployeeFactory();
+const employees: any[] = []
+employees.push(employeeFactory.create("Patric", 1))
+employees.push(employeeFactory.create("John", 2))
+
+employees.forEach((item) => {
+  say.call(item)
+})
