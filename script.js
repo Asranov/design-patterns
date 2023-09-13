@@ -155,3 +155,35 @@ function Observer2() {
 subject.subscribe(Observer1);
 subject.subscribe(Observer2);
 subject.fire();
+//Proxy pattern
+function CryptocurrencyAPI() {
+    this.getValue = function (coin) {
+        console.log("Calling External Cryptocurrency API...");
+        switch (coin) {
+            case "Bitcoin":
+                return "$500";
+            case "Litecoin":
+                return "$50";
+            case "Ethereum":
+                return "$175";
+        }
+    };
+}
+// const api = new CryptocurrencyAPI()
+// console.log(api.getValue("Litecoin"));
+// console.log(api.getValue("Bitcoin"));
+// console.log(api.getValue("Ethereum"));
+function CryptocurrencyProxy() {
+    this.api = new CryptocurrencyAPI();
+    this.cache = {};
+    this.getValue = function (coin) {
+        if (this.cache[coin] == null) {
+            this.cache[coin] = this.api.getValue(coin);
+        }
+        return this.cache[coin];
+    };
+}
+var proxy = new CryptocurrencyProxy();
+console.log(proxy.getValue("Bitcoin"));
+console.log(proxy.getValue("Litecoin"));
+console.log(proxy.getValue("Ethereum"));
