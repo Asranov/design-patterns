@@ -151,3 +151,40 @@ const iter = new Iterator(items)
 console.log(iter.next());
 console.log(iter.next());
 console.log(iter.hasNext());
+
+//Observer pattern
+function Subject() {
+  this.observers = []
+}
+
+Subject.prototype = {
+  subscribe: function (fn) {
+    this.observers.push(fn)
+  },
+  unSubscribte: function (fnToRemove) {
+    this.observers = this.objects.filter(fn => {
+      if (fn != fnToRemove) {
+        return fn
+      }
+    })
+  },
+  fire: function () {
+    this.observers.forEach(fn => {
+      fn.call()
+    })
+  }
+}
+
+const subject = new Subject
+
+function Observer1() {
+  console.log("Observer 1 firing");
+}
+
+function Observer2() {
+  console.log("Observer 2 firing");
+}
+
+subject.subscribe(Observer1)
+subject.subscribe(Observer2)
+subject.fire()
