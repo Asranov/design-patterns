@@ -85,3 +85,46 @@ const processManager = Singleton.getProcessManager()
 const processManager2 = Singleton.getProcessManager()
 
 console.log(processManager === processManager2)
+
+//Strategy pattern
+function Fedex() {
+  this.calculate = package => {
+    return 2.45
+  }
+}
+
+function UPS() {
+  this.calculate = package => {
+    return 1.56
+  }
+}
+
+function USPS() {
+  this.calculate = package => {
+    return 4.5
+  }
+}
+
+function Shipping() {
+  this.company = ""
+  this.setStrategy = (company) => {
+    this.company = company
+  }
+
+  this.calculate = package => {
+    return this.company.calculate(package)
+  }
+}
+
+const fedex = new Fedex()
+const ups = new UPS()
+const usps = new USPS()
+const package = { from: "Alabama", to: "Georgia", weight: 1.56 }
+const shipping = new Shipping()
+shipping.setStrategy(fedex)
+shipping.setStrategy(ups)
+shipping.setStrategy(usps)
+
+console.log("Fedex: ", shipping.setStrategy(fedex));
+console.log("Ups: ", shipping.setStrategy(ups));
+console.log("Usps: ", shipping.setStrategy(usps));

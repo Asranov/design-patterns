@@ -69,3 +69,40 @@ var Singleton = (function () {
 var processManager = Singleton.getProcessManager();
 var processManager2 = Singleton.getProcessManager();
 console.log(processManager === processManager2);
+//Strategy pattern
+function Fedex() {
+    this.calculate = function (package) {
+        return 2.45;
+    };
+}
+function UPS() {
+    this.calculate = function (package) {
+        return 1.56;
+    };
+}
+function USPS() {
+    this.calculate = function (package) {
+        return 4.5;
+    };
+}
+function Shipping() {
+    var _this = this;
+    this.company = "";
+    this.setStrategy = function (company) {
+        _this.company = company;
+    };
+    this.calculate = function (package) {
+        return _this.company.calculate(package);
+    };
+}
+var fedex = new Fedex();
+var ups = new UPS();
+var usps = new USPS();
+var package = { from: "Alabama", to: "Georgia", weight: 1.56 };
+var shipping = new Shipping();
+shipping.setStrategy(fedex);
+shipping.setStrategy(ups);
+shipping.setStrategy(usps);
+console.log("Fedex: ", shipping.setStrategy(fedex));
+console.log("Ups: ", shipping.setStrategy(ups));
+console.log("Usps: ", shipping.setStrategy(usps));
