@@ -221,3 +221,21 @@ chatRoom.addMember(tim);
 chatRoom.addMember(john);
 bob.send("Hey, John", john);
 john.send("Hi, Bob", bob);
+//Visitor pattern
+function Employee(name, salary) {
+    this.name = name;
+    this.salary = salary;
+}
+Employee.prototype = {
+    getSalary: function () {
+        return this.salary;
+    },
+    setSalary: function (sal) {
+        this.salary = sal;
+    },
+    accept: function (visitorFunction) {
+        visitorFunction(this);
+    }
+};
+var employee = new Employee("DevSage", 1000);
+console.log(employee.getSalary());
