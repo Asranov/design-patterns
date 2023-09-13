@@ -128,3 +128,26 @@ shipping.setStrategy(usps)
 console.log("Fedex: ", shipping.setStrategy(fedex));
 console.log("Ups: ", shipping.setStrategy(ups));
 console.log("Usps: ", shipping.setStrategy(usps));
+
+//Iterator pattern
+const items = [1, 2, "hello", true, "world"]
+
+function Iterator(items) {
+  this.items = items
+  this.index = 0
+}
+
+Iterator.prototype = {
+  hasNext: function () {
+    return this.index < this.items.length
+  },
+  next: function () {
+    return this.items[this.index++]
+  }
+}
+
+const iter = new Iterator(items)
+
+console.log(iter.next());
+console.log(iter.next());
+console.log(iter.hasNext());
